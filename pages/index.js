@@ -16,29 +16,35 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Box pt='20' px='6' maxW='2xl' mx='auto'>
-        <Heading bgGradient='linear(to-r, green.500, pink, white)' bgClip='text'>
-          COOPLoan
-        </Heading>
-        <Text
-          maxW='xs'
-          mx='auto'
-          mt='6'
-          color='gray'
-          fontWeight='semibold'
-          fontSize='2xl'>
-          Sign in / Sign up
-        </Text>
+      <Box>
         {!session ? (
-          <Box maxW='xs' mx='auto'>
-            <Auth
-              // providers={["google", "facebook"]}
-              // socialLayout='horizontal'
-              supabaseClient={supabase}
-              appearance={{ theme: ThemeSupa }}
-              theme='dark'
-            />
-          </Box>
+          <>
+            <Box pt='20' px='6' maxW='2xl' mx='auto'>
+              <Heading
+                bgGradient='linear(to-r, green.500, pink, white)'
+                bgClip='text'>
+                COOPLoan
+              </Heading>
+              <Text
+                maxW='xs'
+                mx='auto'
+                mt='6'
+                color='gray'
+                fontWeight='semibold'
+                fontSize='2xl'>
+                Sign in / Sign up
+              </Text>
+              <Box maxW='xs' mx='auto'>
+                <Auth
+                  // providers={["google", "facebook"]}
+                  // socialLayout='horizontal'
+                  supabaseClient={supabase}
+                  appearance={{ theme: ThemeSupa }}
+                  theme='dark'
+                />
+              </Box>
+            </Box>
+          </>
         ) : (
           // <Account session={session} />
           <MainPage session={session} />

@@ -2,6 +2,8 @@ import { Box, Tag, Text, VStack } from "@chakra-ui/react";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import LoanForm from "./LoanForm";
+import dayjs from "dayjs";
+
 
 const Loan = ({ session }) => {
   const supabase = useSupabaseClient();
@@ -10,8 +12,7 @@ const Loan = ({ session }) => {
   const [status, setStatus] = useState(null);
   const [amount, setAmount] = useState(null);
   const [duration, setDuration] = useState(null);
-  const [file_no, setFileno] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
+  const [updated_at, setUpdatedAt] = useState(null);
 
   const [loan_status, setLoanStatus] = useState(false);
   const [loan_amount, setLoanAmount] = useState(null);
@@ -26,7 +27,7 @@ const Loan = ({ session }) => {
 
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(` amount, duration, status`)
+        .select(` amount, duration, status, updated_at`)
         .eq("id", user.id)
         .single();
 
@@ -38,6 +39,7 @@ const Loan = ({ session }) => {
         setStatus(data.status);
         setAmount(data.amount);
         setDuration(data.duration);
+        setUpdatedAt(data.updated_at);
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -69,7 +71,10 @@ const Loan = ({ session }) => {
 
           <Text textAlign='center'>
             You are not eligible for loan at the moment. You have an active loan
-            of N{amount} to pay back in {duration} months.
+            of N{amount}, approve on{" "}
+            {dayjs(updated_at).format(" MMM D, YYYY h:mm A")}, to pay back in{" "}
+            {/* {duration} */}
+            3 months.
           </Text>
         </VStack>
       )}

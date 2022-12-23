@@ -71,7 +71,7 @@ const Loan = ({ session }) => {
 
           <Text textAlign='center'>
             You are not eligible for loan at the moment. You have an active loan
-            of N{amount}, approve on{" "}
+            of N{amount}, approved on{" "}
             {dayjs(updated_at).format(" MMM D, YYYY h:mm A")}, to pay back in{" "}
             {/* {duration} */}
             3 months.

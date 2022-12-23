@@ -19,6 +19,7 @@ import Link from "next/link";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdCall } from "react-icons/md";
 import { RiMailSendFill } from "react-icons/ri";
+import { BsWhatsapp } from 'react-icons/bs'
 
 const MenuDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,7 +27,7 @@ const MenuDrawer = () => {
 
   return (
     <Box>
-      <IconButton
+      <IconButton mr='2'
         onClick={onOpen}
         size='lg'
         isRound
@@ -40,26 +41,35 @@ const MenuDrawer = () => {
           <DrawerHeader>COOPLoan</DrawerHeader>
 
           <DrawerBody py='16'>
+            <Button w='full' mb='8'>
+              Liquidate Loan
+            </Button>
             <VStack align='start' mb='12'>
               <Text>Contact Admin</Text>
               <HStack spacing='6'>
                 {/* <Link href=''> */}
-                  <IconButton
-                    onClick={onClose}
-                    icon={<MdCall size={22} />}
-                    isRound
-                    size='lg'
-                  />
+                <IconButton
+                  onClick={onClose}
+                  icon={<MdCall size={22} />}
+                  isRound
+                  size='lg'
+                />
                 {/* </Link> */}
 
                 {/* <Link href=''> */}
-                  <IconButton
-                    onClick={onClose}
-                    icon={<RiMailSendFill size={22} />}
-                    isRound
-                    size='lg'
-                  />
+                <IconButton
+                  onClick={onClose}
+                  icon={<RiMailSendFill size={22} />}
+                  isRound
+                  size='lg'
+                />
                 {/* </Link> */}
+                <IconButton
+                  onClick={onClose}
+                  icon={<BsWhatsapp size={22} />}
+                  isRound
+                  size='lg'
+                />
               </HStack>
             </VStack>
           </DrawerBody>

@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import ColorModeToggle from "./ColorModeToggle";
 import EditAccount from "./EditAccount";
+import Liquidate from "./Liquidate";
 import MenuDrawer from "./MenuDrawer";
 
 const NavHeader = ({ session }) => {
@@ -80,7 +81,7 @@ const NavHeader = ({ session }) => {
         pr='4'
         flexDir={["column", "column", "column", "row"]}
         justify='space-between'>
-        <Box>
+        <Box w='full'>
           <VStack align='start' spacing='0'>
             {full_name && (
               <Text
@@ -97,7 +98,10 @@ const NavHeader = ({ session }) => {
                   {file_no}
                 </Text>
               )} */}
-            <EditAccount session={session} />
+            <HStack w='100%' align='center' justify='space-between'>
+              <EditAccount session={session} />
+              <Liquidate />
+            </HStack>
           </VStack>
         </Box>
       </Flex>

@@ -83,17 +83,12 @@ const EditAccount = ({ session }) => {
     }
   }
 
-  const closeModal = () => {
-    router.reload();
-    onClose();
-  };
-
   return (
     <Box>
       <Button
         onClick={onOpen}
         color='gray.400'
-        leftIcon={<FiEdit />}
+        leftIcon={<FiEdit size='18' />}
         fontSize='sm'
         p='0'
         variant='ghost'>
@@ -151,7 +146,7 @@ const EditAccount = ({ session }) => {
             </Box>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={closeModal}>Close</Button>
+            <Button onClick={onClose}>Close</Button>
             <Spacer />
             <Button
               onClick={() => updateProfile({ full_name, file_no })}

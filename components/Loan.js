@@ -50,7 +50,7 @@ const Loan = ({ session }) => {
   const handleSubmit = () => {};
 
   return (
-    <Box px='6' py='16'>
+    <Box px='6' py='16' maxW='md' mx='auto'>
       <Text textAlign='center' fontSize='lg' fontWeight='semibold'>
         LOAN STATUS
       </Text>
@@ -88,6 +88,24 @@ const Loan = ({ session }) => {
 
           <Text textAlign='center'>
             Please wait, your loan application is being processed.
+          </Text>
+        </VStack>
+      )}
+      {status === "declined" && (
+        <VStack py='6'>
+          <Tag
+            px='6'
+            py='4'
+            bg='yellow.200'
+            color='yellow.600'
+            fontWeight='semibold'
+            letterSpacing='1px'>
+            DECLINED
+          </Tag>
+
+          <Text textAlign='center'>
+            We cannot process your loan request at the moment. Kindly contact
+            the admin for more information.
           </Text>
         </VStack>
       )}

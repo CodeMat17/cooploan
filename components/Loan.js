@@ -1,9 +1,8 @@
 import { Box, Tag, Text, VStack } from "@chakra-ui/react";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import LoanForm from "./LoanForm";
-import dayjs from "dayjs";
-
 
 const Loan = ({ session }) => {
   const supabase = useSupabaseClient();
@@ -73,8 +72,7 @@ const Loan = ({ session }) => {
             You are not eligible for loan at the moment. You have an active loan
             of N{amount}, approved on{" "}
             {dayjs(updated_at).format(" MMM D, YYYY h:mm A")}, to pay back in{" "}
-            {/* {duration} */}
-            3 months.
+            {/* {duration} */}3 months.
           </Text>
         </VStack>
       )}
@@ -117,6 +115,11 @@ const Loan = ({ session }) => {
 
       {status === "inactive" && (
         <Box>
+          {status === "cancelled" && (
+            <Text fontSize='sm' color='red.400' textAlign='center'>
+              Your loan request was cancelled by an admin
+            </Text>
+          )}
           <VStack py='6'>
             <Tag
               px='6'

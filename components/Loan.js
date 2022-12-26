@@ -1,4 +1,4 @@
-import { Box, Tag, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Spinner, Tag, Text, VStack } from "@chakra-ui/react";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
@@ -7,14 +7,9 @@ import LoanForm from "./LoanForm";
 const Loan = ({ session }) => {
   const supabase = useSupabaseClient();
   const user = useUser();
-  const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState(null);
   const [amount, setAmount] = useState(null);
-  const [duration, setDuration] = useState(null);
   const [updated_at, setUpdatedAt] = useState(null);
-
-  const [loan_status, setLoanStatus] = useState(false);
-  const [loan_amount, setLoanAmount] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -22,11 +17,11 @@ const Loan = ({ session }) => {
 
   async function getProfile() {
     try {
-      setLoading(true);
+      // setLoading(true);
 
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(` amount, duration, status, updated_at`)
+        .select(` amount, status, updated_at`)
         .eq("id", user.id)
         .single();
 
@@ -37,14 +32,15 @@ const Loan = ({ session }) => {
       if (data) {
         setStatus(data.status);
         setAmount(data.amount);
-        setDuration(data.duration);
+        // setDuration(data.duration);
         setUpdatedAt(data.updated_at);
+        // setShowCards(false);
       }
     } catch (error) {
       alert("Error loading user data!");
       console.log(error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }
 
@@ -55,6 +51,42 @@ const Loan = ({ session }) => {
       <Text textAlign='center' fontSize='lg' fontWeight='semibold'>
         LOAN STATUS
       </Text>
+
+      {status === "inactive" && (
+        <Box>
+          {status === "cancelled" && (
+            <Text fontSize='sm' color='red.400' textAlign='center'>
+              Your loan request was cancelled by an admin
+            </Text>
+          )}
+          <VStack py='6'>
+            <Tag
+              px='6'
+              py='4'
+              bg='green.200'
+              color='green.600'
+              fontWeight='semibold'
+              letterSpacing='1px'>
+              INACTIVE
+            </Tag>
+          </VStack>
+          <Text textAlign='center' fontSize='lg' fontWeight='semibold'>
+            LOAN APPLICATION FORM
+          </Text>
+          <Box>
+            <Box
+              my='2'
+              p='4'
+              rounded='md'
+              border='1px'
+              borderColor='gray'
+              maxW='xs'
+              mx='auto'>
+              <LoanForm session={session} />
+            </Box>
+          </Box>
+        </Box>
+      )}
 
       {status === "active" && (
         <VStack py='6'>
@@ -113,40 +145,11 @@ const Loan = ({ session }) => {
         </VStack>
       )}
 
-      {status === "inactive" && (
-        <Box>
-          {status === "cancelled" && (
-            <Text fontSize='sm' color='red.400' textAlign='center'>
-              Your loan request was cancelled by an admin
-            </Text>
-          )}
-          <VStack py='6'>
-            <Tag
-              px='6'
-              py='4'
-              bg='green.200'
-              color='green.600'
-              fontWeight='semibold'
-              letterSpacing='1px'>
-              INACTIVE
-            </Tag>
-          </VStack>
-          <Text textAlign='center' fontSize='lg' fontWeight='semibold'>
-            LOAN APPLICATION FORM
-          </Text>
-          <Box>
-            <Box
-              my='2'
-              p='4'
-              rounded='md'
-              border='1px'
-              borderColor='gray'
-              maxW='xs'
-              mx='auto'>
-              <LoanForm session={session} />
-            </Box>
-          </Box>
-        </Box>
+      {status === null && (
+        <HStack spacing='4' align='center' justify='center' pt='8'>
+          <Spinner size='lg' />
+          <Text letterSpacing='1px'>Please wait...</Text>
+        </HStack>
       )}
     </Box>
   );

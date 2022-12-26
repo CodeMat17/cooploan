@@ -18,6 +18,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const LoanForm = ({ session }) => {
@@ -25,6 +26,7 @@ const LoanForm = ({ session }) => {
   const user = useUser();
 
   const toast = useToast();
+  const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [amount, setAmount] = useState("");
@@ -95,6 +97,7 @@ const LoanForm = ({ session }) => {
       console.log(error);
     } finally {
       setLoading(false);
+      router.reload();
       onClose();
     }
   };

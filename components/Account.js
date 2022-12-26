@@ -79,7 +79,7 @@ export default function Account({ session }) {
   return (
     <VStack w='full' h='100vh' py='20'>
       <Box
-        bg='white'
+        bg='white' color='black'
         px='4'
         rounded='lg'
         py='6'

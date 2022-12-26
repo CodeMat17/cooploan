@@ -56,7 +56,7 @@ const Loan = ({ session }) => {
         <Box>
           {status === "cancelled" && (
             <Text fontSize='sm' color='red.400' textAlign='center'>
-              Your loan request was cancelled by an admin
+              Your loan request was cancelled by an admin.
             </Text>
           )}
           <VStack py='6'>

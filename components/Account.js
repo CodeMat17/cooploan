@@ -22,6 +22,7 @@ export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
   const [full_name, setFullname] = useState(null);
   const [file_no, setFileno] = useState(null);
+  
 
   useEffect(() => {
     getProfile();

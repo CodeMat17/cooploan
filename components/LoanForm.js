@@ -31,6 +31,7 @@ const LoanForm = ({ session }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [amount, setAmount] = useState("");
   const [file_no, setFileNo] = useState("");
+  const [phone_no, setPhoneNo] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -66,10 +67,12 @@ const LoanForm = ({ session }) => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      console.log(amount, name, file_no);
+      console.log(amount, name, file_no, phone_no);
       const { data, error } = await supabase
         .from("loans")
-        .insert([{ amount, name, file_no, user_id: session.user.id }]);
+        .insert([
+          { amount, name, file_no, phone_no, user_id: session.user.id },
+        ]);
 
       if (error) {
         throw error;
@@ -91,6 +94,7 @@ const LoanForm = ({ session }) => {
         });
         setAmount("");
         setFileNo("");
+        setPhoneNo("");
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -152,6 +156,19 @@ const LoanForm = ({ session }) => {
         {file_no === "000" && (
           <FormHelperText color='red.500'>Invalid file number</FormHelperText>
         )}
+      </FormControl>
+      <FormControl isRequired={true} mb='6'>
+        <FormLabel>Enter Phone No:</FormLabel>
+        <Input
+          type='tel'
+          value={phone_no}
+          onChange={(e) => setPhoneNo(e.target.value)}
+          w='full'
+          placeholder='Your phone no.'
+        />
+        <FormHelperText color='red.500'>
+          Request will be declined if phone no is invalid.
+        </FormHelperText>
       </FormControl>
       {/* <ApplyModal /> */}
       <Button

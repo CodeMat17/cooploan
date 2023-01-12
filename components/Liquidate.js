@@ -47,7 +47,7 @@ const Liquidate = () => {
               <FormLabel mb='0' fontSize='sm'>
                 Bank Name
               </FormLabel>
-              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
                 Zenith Bank
               </Text>
             </FormControl>
@@ -55,7 +55,7 @@ const Liquidate = () => {
               <FormLabel mb='0' fontSize='sm'>
                 Account Name
               </FormLabel>
-              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
                 Lorem, ipsum dolor.
               </Text>
             </FormControl>
@@ -63,7 +63,7 @@ const Liquidate = () => {
               <FormLabel mb='0' fontSize='sm'>
                 Account Number
               </FormLabel>
-              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
                 0123456789
               </Text>
             </FormControl>

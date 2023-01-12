@@ -8,6 +8,8 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  FormControl,
+  FormLabel,
   HStack,
   IconButton,
   Text,
@@ -27,7 +29,8 @@ const MenuDrawer = () => {
 
   return (
     <Box>
-      <IconButton mr='2'
+      <IconButton
+        mr='2'
         onClick={onOpen}
         size='lg'
         isRound
@@ -41,10 +44,34 @@ const MenuDrawer = () => {
           <DrawerHeader>COOPLoan</DrawerHeader>
 
           <DrawerBody py='16'>
-            <Button w='full' mb='8'>
-              Liquidate Loan
-            </Button>
-            <VStack align='start' mb='12'>
+            <Text py='6' textAlign='center' fontWeight='semibold'>
+              TO LIQUIDATE YOUR LOAN, USE:
+            </Text>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Bank Name
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
+                Zenith Bank
+              </Text>
+            </FormControl>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Account Name
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
+                Lorem, ipsum dolor.
+              </Text>
+            </FormControl>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Account Number
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray.400'>
+                0123456789
+              </Text>
+            </FormControl>
+            <VStack align='start' my='12'>
               <Text>Contact Admin</Text>
               <HStack spacing='6'>
                 {/* <Link href=''> */}

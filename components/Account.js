@@ -102,8 +102,6 @@ export default function Account({ session }) {
               disabled
               id='email'
               type='email'
-              border='1px'
-              bordercolor='gray'
               value={session.user.email}
             />
           </FormControl>

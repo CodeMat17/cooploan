@@ -1,8 +1,8 @@
 import {
   Box,
   Button,
-  Divider,
-  Input,
+  FormControl,
+  FormLabel,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,7 +10,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -38,34 +37,44 @@ const Liquidate = () => {
         onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Liquidate Loan</ModalHeader>
+          <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box>
-              <Text fontWeight='semibold' fontSize='lg'>
-                Bank Details
+            <Text py='6' textAlign='center' fontWeight='semibold'>
+              TO LIQUIDATE YOUR LOAN, USE:
+            </Text>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Bank Name
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+                Zenith Bank
               </Text>
-              <Text fontSize='sm'>Account Name:</Text>
-              <Text fontSize='sm'>Account Number:</Text>
-              <Text fontSize='sm'>Bank Name:</Text>
-            </Box>
-            <Divider my='4' />
-            <Box>
-              <Text fontWeight='semibold' fontSize='lg'>
-                Liquidate Online
+            </FormControl>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Account Name
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+                Lorem, ipsum dolor.
               </Text>
-              <Input mt='2' w='full' />
-              <Input mt='2' w='full' />
-              <Input mt='2' w='full' />
-            </Box>
+            </FormControl>
+            <FormControl mb='2'>
+              <FormLabel mb='0' fontSize='sm'>
+                Account Number
+              </FormLabel>
+              <Text border='1px' px='3' py='1' rounded='md' color='gray'>
+                0123456789
+              </Text>
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
+            <Button colorScheme='blue' onClick={onClose}>
+              Done
             </Button>
-            <Spacer />
-            <Button variant='outline'>Pay Now</Button>
+            {/* <Spacer />
+            <Button variant='outline'>Pay Now</Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

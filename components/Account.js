@@ -80,7 +80,8 @@ export default function Account({ session }) {
   return (
     <VStack w='full' h='100vh' py='20'>
       <Box
-        bg='white' color='black'
+        bg='white'
+        color='black'
         px='4'
         rounded='lg'
         py='6'
@@ -101,6 +102,8 @@ export default function Account({ session }) {
               disabled
               id='email'
               type='email'
+              border='1px'
+              bordercolor='gray'
               value={session.user.email}
             />
           </FormControl>
@@ -110,6 +113,8 @@ export default function Account({ session }) {
               id='fullname'
               type='text'
               value={full_name || ""}
+              border='1px'
+              bordercolor='gray'
               onChange={(e) => setFullname(e.target.value)}
             />
           </FormControl>
@@ -120,6 +125,8 @@ export default function Account({ session }) {
               id='file_no'
               type='text'
               value={file_no || ""}
+              border='1px'
+              bordercolor='gray'
               onChange={(e) => setFileno(e.target.value)}
             />
           </FormControl>
@@ -132,12 +139,8 @@ export default function Account({ session }) {
               {loading ? "Loading ..." : "Update"}
             </Button>
           </div>
-          <Button
-            w='full'
-            mb='4'
-            onClick={() => router.reload()}
-          >
-           Go Back
+          <Button w='full' mb='4' onClick={() => router.reload()}>
+            Go Back
           </Button>
         </Box>
       </Box>
